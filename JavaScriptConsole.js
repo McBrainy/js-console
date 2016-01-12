@@ -8,7 +8,6 @@
 
 var ask, echo, askHTML, echoHTML, run, runFile,
 	showEditor, showCode, save, info, help, clr,
-	newAccount, L0G1N, chPA55,
 	PROMPT = "&gt; ";
 
 location.hash = "";
@@ -115,44 +114,7 @@ location.hash = "";
 	/*
 	 * Private functions
 	 */
-	
-	function interactWithServer(u,p,m){
-		if (!u) {
-			ask('name = ', function(r){interactWithServer(r,null,m);});
-		} else {
-			waitForCallback = true;
-			$.post('', 'm=' + u + '&u=' + u, function(d) {
-				//waitForCallback = false;
-				if (d === 'y') {
-					if (!p) {
-						ask('P/\\55\\/\\/0RD = ', function(r){interactWithServer(u,r,m);});
-					} else {
-						//waitForCallback = true;
-						$.post('', 'm=' + u + '&u=' + u + '&p=' + p, function(dd,tt,xx) {
-							//waitForCallback = false;
-							if (xx.getResponseHeader('Success') === 'y') {
-								echo(dd);
-								askForCommand();
-							} else {
-								echo(dd);
-								askForCommand();
-							}
-						}).fail(function(){
-							echo('A connection error occurred.');
-							askForCommand();
-						});
-					}
-				} else {
-					echo(d);
-					askForCommand();
-				}
-			}).fail(function(){
-				echo('A connection error occurred.');
-				askForCommand();
-			});
-		}
-	}
-	
+
 /*	function toggleDisplay(event) {
 		if ($(event.target).width() <= $(event.target.parentNode).width() * 0.9) {
 			$(event.target).css("display", "inline-block");
@@ -216,16 +178,16 @@ location.hash = "";
 	}
 	
 	// fancy object-to-string functions
-	function parseObject(Obj) {
+	function objToStr(Obj) {
 		if (typeof Obj === "string") { return '"' + Obj.replace(/"/g,'\\"') + '"'; }
-		if (Obj instanceof Array) { return parseArray(Obj); }
+		if (Obj instanceof Array) { return arrToStr(Obj); }
 		return Obj;
 	}
 	
-	function parseArray(myArray) {
+	function arrToStr(myArray) {
 		var newArr = [];
 		for (var i=0;i<myArray.length;i++) {
-			newArr.push(parseObject(myArray[i]));
+			newArr.push(objToStr(myArray[i]));
 		}
 		return "[" + newArr + "]";
 	}
@@ -288,7 +250,7 @@ location.hash = "";
 			})(command);
 			
 			if (result !== undefined) {
-				echo(parseObject(result)); // Output result
+				echo(objToStr(result)); // Output result
 			}
 		}
 		catch (error) {
@@ -360,38 +322,7 @@ location.hash = "";
 		document.getElementById("OutputText").innerHTML += '<div>' + txt + '</div>';
 		scrollDown();
 	};
-	
-	newAccount = function newAccount(u,p) {
-		interactWithServer(u,p,'n');
-	};
-	
-	L0G1N = function L0G1N(u,p) {
-		interactWithServer(u,p,'l');
-	};
-	
-	chPA55 = function chPA55() {
-		askHTML('Old:   ', function(p) {
-			askHTML('New:   ', function(p1) {
-				askHTML('Again: ', function(p2) {
-					if (p1 === p2) {
-						waitForCallback = true;
-						$.post('','m=p&p=' + p + '&np=' + p1, function(d) {
-							
-						})
-						.fail(function() {
-							echo('A connection error has occurred.');
-							askForCommand();
-						});
-					}
-					else {
-						echo("They don't match.");
-						askForCommand();
-					}
-				});
-			});
-		});
-	};
-	
+
 	// Shows the internal editor
 	// newWindow = Open in a new window? default is false
 	showEditor = function showEditor(newWindow) {
@@ -665,7 +596,7 @@ save.toString = function() {
 
 showCode.toString = function() {
 	return 'function showCode(code) {\n' +
-		"\t// Displays a piece of code, executes it, and display's the result.\n}";
+		"\t// Displays a piece of code, executes it, and displays the result.\n}";
 };
 
 showEditor.toString = function() {

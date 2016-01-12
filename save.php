@@ -4,7 +4,7 @@ if (isset($_POST['filename']) && $_POST['filename']) {
 	$filename = $_POST['filename'];
 }
 else {
-	$filename = 'myAweomeScript.js';
+	$filename = 'myAwesomeScript.js';
 }
 
 header("Content-type: application/javascript");
