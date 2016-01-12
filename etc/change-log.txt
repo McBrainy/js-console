@@ -1,0 +1,6 @@
+0.0.0 [8/12/2013] - initial release
+    0.0.1 [8/13/2013] - fixes runFile()
+  0.1.0 [8/20/2013] - includes CodeMirror, fixes multiple asking and echoing 
+      after asking, includes info, better graphics, etc.
+    0.1.1 [8/27/2013] - basic optimizations, that is, using data URIs to 
+        cut down on HTTP requests

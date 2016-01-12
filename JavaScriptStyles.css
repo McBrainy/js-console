@@ -1,0 +1,238 @@
+body {
+	font:16px Terminal, Monaco, Lucida Console;
+	background-color:black;
+	overflow:hidden;
+}
+#header {
+	font-size:33pt;color:lightgrey;
+	text-align:center;
+}
+
+/*---------- RULES FOR THE CONSOLE WINDOW -----------*/
+
+#consoleWrapper {
+	text-align:center;
+	perspective:3000px;
+	-ms-perspective:3000px;
+	-moz-perspective:3000px;
+    -webkit-perspective:3000px;
+	transform-style:preserve-3d;
+	-ms-transform-style:preserve-3d;
+	-moz-transform-style:preserve-3d;
+	-webkit-transform-style:preserve-3d;
+	position:relative;
+	z-index:5;
+}
+#console {
+    width:100%;
+	text-align:left;
+	border-radius:15px;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	overflow:hidden;
+	display:inline-block;
+	background-color:black;
+}
+.cell {float:left;}
+.corner {background:url('console-corners.gif') no-repeat;}
+.top, .bottom {height:15px;}
+.left, .right {width:15px;}
+.vert-middle {
+	width:800px; /* fallback for older browsers, Opera */
+	width:calc(100% - 30px);
+	width:-moz-calc(100% - 30px);
+	width:-webkit-calc(100% - 30px);
+	width:expression(100% - 30px); /* IE8 & under */
+}
+.horiz-middle {
+	height:440px;
+	height:calc(100% - 30px);
+	height:-moz-calc(100% - 30px);
+	height:-webkit-calc(100% - 30px);
+	height:expression(100% - 30px); /* IE8 & under */
+}
+.left {clear:left;}
+#top {background:url('data:image/gif;base64,R0lGODlhAQAPAOMPAA0NDR0dHS8wMENERFhYWG1tbYGBgZSUlKWlpbW1tcPDw8/Q0Nvb2+Tk5e3s7P///yH5BAEKAA8ALAAAAAABAA8AAAQL0DW2VELHFDJEABEAOw==') repeat-x;}
+#top-right {background-position:-15px 0px;}
+#right {background:url('data:image/gif;base64,R0lGODlhDwABAOMPAA0NDQ8PEBkZGSUkJTExMT09PUlJSVNTU1xcXGNkZGlpaWxsbG9vbm9vb29wb////yH5BAEKAA8ALAAAAAAPAAEAAAQLEAQxSDEHJbWYaxEAOw==') repeat-y;}
+#bottom-right {background-position:-15px -15px;}
+#bottom {background:url('data:image/gif;base64,R0lGODlhAQAPAOMOAAAAAAcHCA8PDxcYGCEhISopKTExMTU1NDc3ODk6Oj09PD8/Pz9AQEBAQP///////yH5BAEKAA8ALAAAAAABAA8AAAQLEAQxSDFIsbZUOhEAOw==') repeat-x;}
+#bottom-left {background-position:0px -15px;}
+#left {background:url('data:image/gif;base64,R0lGODlhDwABAOMPABIRER4dHS4uLj49PU1OTV5eXm5ubnx9fImJiZSUlJ2dnaSlpaurq7CxsLS0tP///yH5BAEKAA8ALAAAAAAPAAEAAAQL0DW2VELHFDJEABEAOw==') repeat-y;}
+#OutputWindow {padding:0px;color:green;overflow:auto;}
+
+/*---------------- 3D CARD FLIP RULES ----------------*/
+
+#back {
+    color:white;
+	position:absolute;
+	transform:rotateY(180deg);
+	-ms-transform:rotateY(180deg);
+	-moz-transform:rotateY(180deg);
+	-webkit-transform:rotateY(180deg);
+	background:url('data:image/gif;base64,R0lGODlhHgAeAIQYABUVFRYWFhcXFxgYGBkZGRoaGhsbGxwcHB0dHR4eHh8fHyAgICEhISIiIiMjIyQkJCUlJSYmJicnJygoKCkpKSsrKywsLC8vL////////////////////////////////yH5BAEKAB8ALAAAAAAeAB4AAAX+IDAAAVCYgAMkAAEIKSABCHC0bxuMyVRMAkPDoaA0VoWCAgFRACeKwGHCIKFOKpYLpprVbluaDWJpFASCXVrhMDwmF8ZhIVQ6fpBAwzV74G4TAIE3CjklAIIAETkSDAN6CgsFDg0PBAmWEw8RAUoMCApNDBACd1aIgYswLCcuLCoGAEd+LggEAwYBCwkFA3kCEQYDAk6ghUUIBwgCCBSFWThcMmJgOTUwN2CdBgsARQcCCQYODCdpBAEEEQcOmxCPBOZi2DYrALEnNVWLJYTeFCzeKHhATgUECC4WBJpwYEABdC4I2FIRpgu1aPPq3WARywYBKDt2FDBgIEqDCHv+CiBIsCCCAAoREBagUIVWvYX1CsE4lEiVvQRDHBx4cKDAgwQKDPRouACCtwORBKgjsGfCIotfMF7TaA+fGAVJljR5EmXKjZYLJBKQSoCCgAnqsNYLszVbVxT6AJBiIOAGggABJjQIIDVtJIUOCBgIy2vHDXqFqsSqsajPn0SDTAwYcEACBQIPKExIZwBCBIkNKOg5UEIXhc03MtrliBfAPiv+uEg4QEHChAQRKtAEQPxAhL8IBtAZ0A6cLnJac8y+V/t2Px2BBxcmcHhC4sVKGg+gyZoAg1iSxVQGYBNQotxWNqOTqtc7Agd5WA9oUIGAAwELwGRJAgPIIV09tOUfY5siuHlzIAAwUfBfEY4c0NALAZjGWgEGHkDKf7aFAAA7');
+	width:100%;
+	border-radius:15px;
+	box-shadow:1px 2px 3px rgba(255,255,255,0.5) inset;
+	/* display:table; - set by js */
+}
+#info-text {
+	display:table-cell;
+	vertical-align:middle;
+	line-height:30px;
+}
+#done {
+	position: absolute;
+	right: 40px;
+	bottom: 20px;
+}
+#card {
+    display:inline-block;
+	/* calc() - So that it's automatic in older browsers */
+	width:calc(80%);width:-moz-calc(80%);width:-webkit-calc(80%);
+	width:expression(80%); /* IE8 & under */
+	transition:all 1s;
+	-webkit-transition:all 1s;
+	transform-style:preserve-3d;
+	-ms-transform-style:preserve-3d;
+	-moz-transform-style:preserve-3d;
+	-webkit-transform-style:preserve-3d;
+}
+#back, #console, #info-icon {
+	backface-visibility:hidden;
+	-ms-backface-visibility:hidden;
+	-moz-backface-visibility:hidden;
+	-webkit-backface-visibility:hidden;
+}
+#card.flipped {
+	transform:rotateY(180deg);
+	-ms-transform:rotateY(180deg);
+	-moz-transform:rotateY(180deg);
+	-webkit-transform:rotateY(180deg);
+}
+/* Safari bug fix needed!
+#card.flipped #console {
+	visibility:hidden;
+}
+*/
+
+/*--------------- RULES FOR DISPLAYING CONTENT ---------------*/
+
+#OutputText {
+	margin:0px;
+	display:inline;
+	font:inherit;
+	white-space: pre-wrap;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	white-space: -moz-pre-wrap;
+	word-wrap: break-word; /* Internet Explorer 5.5+ */
+	tab-size:4;
+	-moz-tab-size:4;
+	-o-tab-size:4;
+}
+.Input, .command {color:red;}
+.InputBox {display:inline-block;vertical-align:top;}
+.Output {color:green;}
+#bottom-right #info-icon {
+	position:absolute;
+	border-radius:100%;
+	opacity:0.4;
+	filter:Alpha(opacity=40);
+	transition:.5s all;
+	-webkit-transition:.5s all;
+}
+#bottom-right:hover #info-icon {opacity:1;filter:Alpha(opacity=100);}
+#command-line, .command {
+	color: red;
+	min-width: 50%;
+	min-height: 16px;
+	font: 16px Terminal, Monaco, Lucida Console;
+	display: inline-block;
+	vertical-align: top;
+	outline: none;
+}
+.err {color:red;}
+
+/*---------- RULES FOR THE FUNCTION SELECTOR -----------*/
+
+#funcSelect {
+	background:url('data:image/gif;base64,R0lGODlhAQAQALMAAMTExI2OjW5ubsnIyXl5eoaGh5WVlb+/v2pqaaWkpLm5uaurrHNzc7Oysp2dnYCAgCH5BAAAAAAALAAAAAABABAAAAQMcICj2krOhPIIE0gEADs=') repeat-x rgb(106,106,106);
+	margin:0px 5px 3px auto;padding:0px 10px;
+	border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;
+	color:white;font:14px Calibri, sans-serif;font-weight:bold;
+	display:inline-block;text-align:left;
+	
+	display:none;
+}
+#funcSelect ul {
+	font-size:13px;
+	margin:0px;padding:0px;display:none;
+	list-style-type:none;
+	position:absolute;
+	text-align:left;
+}
+#funcSelect:hover ul {
+	display:block;overflow:hidden;
+	animation:dropdown .5s;-webkit-animation:dropdown .5s;
+}
+@keyframes dropdown {
+	from {height:0px;}
+	to   {height:200px;height:calc(auto);}
+	/* calc(auto) is there in the hope that it becomes supported */
+}
+@-webkit-keyframes dropdown {
+	from {height:0px;}
+	to   {height:200px;height:calc(auto);}
+}
+#funcSelect ul li {
+	background-color:black;
+	cursor:crosshair;
+	border:2px solid gray;
+	border-width:0px 2px;
+	padding:0px 5px;
+}
+#funcSelect ul li:hover {background-color:gray;}
+
+/*---------- RULES FOR THE INTERNAL EDITOR ----------*/
+
+#editor {margin:10px 10% 0px;}
+.CodeMirror {border-radius:15px;}
+.CodeMirror-cursor {border-color:darkgray !important;}
+.button {
+	color:white;
+	background: gray;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(200,200,200)), to(rgb(50,50,50)));
+	background: -webkit-linear-gradient(top, rgb(200,200,200), rgb(50,50,50));
+	background: -moz-linear-gradient(top, rgb(200,200,200), rgb(50,50,50));
+	background: -ms-linear-gradient(top, rgb(200,200,200), rgb(50,50,50));
+	background: -o-linear-gradient(top, rgb(200,200,200), rgb(50,50,50));
+	background: linear-gradient(top, rgb(200,200,200), rgb(50,50,50));
+	box-shadow: 0px 3px 3px rgba(255,255,255,0.4) inset;
+	-moz-box-shadow: 0px 3px 3px rgba(255,255,255,0.4) inset;
+	-webkit-box-shadow: 0px 3px 3px rgba(255,255,255,0.4) inset;
+	margin:5px;
+	padding:0px 10px;
+	border-radius:15px;
+	float:right;
+	cursor:pointer;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+}
+.button:active {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(50,50,50)), to(rgb(200,200,200)));
+	background: -webkit-linear-gradient(top, rgb(50,50,50), rgb(200,200,200));
+	background: -moz-linear-gradient(top, rgb(50,50,50), rgb(200,200,200));
+	background: -ms-linear-gradient(top, rgb(50,50,50), rgb(200,200,200));
+	background: -o-linear-gradient(top, rgb(50,50,50), rgb(200,200,200));
+	background: linear-gradient(top, rgb(50,50,50), rgb(200,200,200));
+	box-shadow: 0px 3px 3px rgba(0,0,0,0.4) inset;
+	-moz-box-shadow: 0px 3px 3px rgba(0,0,0,0.4) inset;
+	-webkit-box-shadow: 0px 3px 3px rgba(0,0,0,0.4) inset;
+}
+#comment {color:rgb(0,80,0);}
+#undo,#redo {color:rgb(0,0,100);font-weight:bold;}
+#save,#run {font-style:italic;}
+#save .name, #run .name {color:rgb(150,0,0);}

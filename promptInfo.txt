@@ -1,0 +1,35 @@
+Carriage return (\r), line feed (\n), and tab (\t) characters all work. Backslashes must be escaped (\\). These are simply JavaScript string conventions. 
+
+HTML is also allowed. This includes ampersand-preceded HTML entities.
+
+The default prompt is "&gt; ", which looks like "> ".
+
+The console supports the use of the following:
+
+Example prompt: "$u; #$n;($h;:$m;:$s;) &gt; " might look like "Guest #1(14:23:42) > ".
+
+$; = $ (only necessary if used preceding one of these, 
+	eg. "$;u;" would output "$u;",
+	whereas no such escape is required in "$100")
+$u; = Your username
+$n; = The command number
+
+Time parts: (with leading zeros unless in all caps, eg. $H;)
+$h; = hours (0 - 24)
+$12h; = hours in 12-hour time
+$ap; = am or pm
+$AP; = AM or PM
+$min; = minutes
+$s; = seconds
+Example: "$12H;:$min; $ap;" might return "3:02 pm"
+
+Date parts:
+$d; = day of month
+$D; = weekday abbr. (eg. Mon)
+$m; = # of month (0-11)
+$M; = # of month without leading zeros
+$mo; = abbr. of month (eg. Jan)
+/$MO; = full month name (eg. January)
+$y; = 2-digit year (eg. 05)
+$Y; = 4-digit year (eg. 2005)
+Example: "$D;, $d; $mo;. '$yr;" might return "Tues, 16 Jul. '13"
