@@ -487,9 +487,9 @@ location.hash = "";
 		if (!doc) { return; } // editor was never opened
 		
 		// Create iFrame
-		var iframe = document.createElement('iframe');
-		iframe.style.display = "none";
-		document.body.appendChild(iframe);
+		var iframe = $('<iframe>', { src: 'javascript:false;' })
+			.css('display', 'none')
+			.appendTo(document.body)[0];
 		
 		// Get the iframe's document
 		var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
