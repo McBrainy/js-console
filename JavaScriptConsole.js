@@ -474,7 +474,15 @@ location.hash = "";
 			execute(code);
 		}
 	};
-	
+
+	function addDataToForm(form, name, value) {
+		$('<input/>', {
+			type: 'hidden',
+			name: name,
+			value: value
+		}).appendTo(form);
+	}
+
 	save = function save(name) {
 		if (!doc) { return; } // editor was never opened
 		
@@ -487,29 +495,16 @@ location.hash = "";
 		var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 		
 		// Make a form
-		var form = document.createElement('form');
-		form.action = 'save';
-		form.method = 'POST';
-		
-		// Add form element for content
-		var input = document.createElement('input');
-		input.type = 'hidden';
-		input.name = 'content';
-		input.value = doc.getValue();
-		form.appendChild(input);
-		
-		// Add form element for filename
-		input = document.createElement('input');
-		input.type = 'hidden';
-		input.name = 'filename';
-		input.value = name || '';
-		form.appendChild(input);
-		
+		var form = $('<form>', { action: 'save', method: 'post' })[0];
+
+		addDataToForm(form, 'content', doc.getValue());
+		addDataToForm(form, 'filename', name || '');
+
 		// Add form to iFrame
 		// IE doesn't have the "body" property
 		(iframeDoc.body || iframeDoc).appendChild(form);
 		
-		// Post the form :-)
+		// Post the form
 		form.submit();
 	};
 	

@@ -1,5 +1,0 @@
-deny from all
-allow from 127.0.0.1
-<IfModule php5_module>
-    php_value session.cookie_httponly true
-</IfModule>
