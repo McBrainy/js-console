@@ -1,0 +1,2 @@
+ErrorDocument 404 "Error 404: Page not found"
+ErrorDocument 403 "Error 404: Forbidden"
