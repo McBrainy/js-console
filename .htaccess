@@ -2,3 +2,6 @@ ErrorDocument 404 "Error 404: Page not found"
 ErrorDocument 403 "Error 404: Forbidden"
 
 Options All MultiViews
+
+# Prevent 000webhost adding stats code
+php_value auto_append_file none

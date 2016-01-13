@@ -52,7 +52,8 @@
 					<div id="bottom" class="bottom vert-middle cell"></div>
 					<div id="bottom-right" class="bottom right corner cell">
 						<img src='data:image/gif;base64,R0lGODlhDAAMAKEBAAAAAP///////////yH5BAEKAAIALAAAAAAMAAwAAAITjI9pAIrsomJNQlvj1dlt/0lHAQA7'
-							id='info-icon' style='display:none;' title='info()' />
+							id='info-icon' style='display:none;'
+							title='info()' alt="info" />
 					</div>
 				</div>
 			</div>
